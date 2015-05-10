@@ -2,7 +2,7 @@ import socket
 import sys
 
 HOST = '' # Endereco IP do Servidor
-PORT = sys.argv[1] # Recebe a porta que o Servidor esta por parametro na linha de comando
+PORT = int (sys.argv[1]) # Recebe a porta que o Servidor esta por parametro na linha de comando
 udp = socket.socket(socket.AF_INET, #internet
 	socket.SOCK_DGRAM) #UDP
 orig = (HOST, PORT)
@@ -13,7 +13,7 @@ while True:
 	print 'Conectado por', cliente
 	#Recebe o numero de msgs enviadas pelo cliente
 	cont = 1
-	num_msg = int (con.recv(1024))
+	num_msg = int (con.recv(4))
 	print 'Recebendo ' + str(num_msg) + ' msgs'
 	while cont <=  num_msg:
 		msg = con.recv(1024)

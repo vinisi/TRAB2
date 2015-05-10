@@ -13,7 +13,7 @@ num_msg = 5000
 tam_msg = bytearray(1000)
 
 #informa ao servidor quantas msg serao enviadas
-udp.send (str (num_msg))
+udp.send (num_msg)
 
 inicio = time.time()
 while cont <= num_msg:
