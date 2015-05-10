@@ -2,7 +2,7 @@ import socket
 import sys
  
 HOST = ''   # Symbolic name meaning all available interfaces
-if not sys.argv[1]:
+if sys.argv[1]:
 	PORT = int(sys.argv[1]) # Arbitrary non-privileged port
 else:
 	print 'Informe o porto'
