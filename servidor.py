@@ -1,29 +1,40 @@
 import socket
 import sys
-
-HOST = '' # Endereco IP do Servidor
-PORT = int (sys.argv[1]) # Recebe a porta que o Servidor esta por parametro na linha de comando
-udp = socket.socket(socket.AF_INET, #internet
-	socket.SOCK_DGRAM) #UDP
-orig = (HOST, PORT)
-udp.bind(orig)
-
-while True:
-	con, cliente = udp.accept()
-	print 'Conectado por', cliente
-	#Recebe o numero de msgs enviadas pelo cliente
-	cont = 1
-	num_msg = int (con.recv(4))
-	print 'Recebendo ' + str(num_msg) + ' msgs'
-	while cont <=  num_msg:
-		msg = con.recv(1024)
-		if (msg):
-			print 'Recebendo msg '+ str(cont)
-			cont = cont + 1
-		if not msg:
-			break
-
-	print 'Enviando msg de retorno de '+ str (con.send(bytearray(1))) +' para o cliente'
-	print 'Finalizando conexao com o cliente', cliente
-	con.close()
-sys.exit(0)
+ 
+HOST = ''   # Symbolic name meaning all available interfaces
+PORT = int(sys.argv[1]) # Arbitrary non-privileged port
+ 
+# Datagram (udp) socket
+try :
+    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+    print 'Socket created'
+except socket.error, msg :
+    print 'Failed to create socket. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
+    sys.exit()
+ 
+ 
+# Bind socket to local host and port
+try:
+    s.bind((HOST, PORT))
+except socket.error , msg:
+    print 'Bind failed. Error Code : ' + str(msg[0]) + ' Message ' + msg[1]
+    sys.exit()
+     
+print 'Socket bind complete'
+ 
+#now keep talking with the client
+while 1:
+    # receive data from client (data, addr)
+    d = s.recvfrom(1024)
+    data = d[0]
+    addr = d[1]
+     
+    if not data: 
+        break
+     
+    reply = 'OK...' + data
+     
+    s.sendto(reply , addr)
+    print 'Message[' + addr[0] + ':' + str(addr[1]) + '] - ' + data.strip()
+     
+s.close()
