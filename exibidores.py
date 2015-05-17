@@ -15,12 +15,12 @@ except:
 	print 'Informe a porta [cliente].py [porta]'
 	sys.exit()
  
+    s.sendto(2)
 while(1) :
     msg = raw_input('Enter message to send : ')
      
     try :
         #Set the whole string
-        s.sendto(2, (host, port))
         s.sendto(msg, (host, port))
          
         # receive data from server (data, addr)
