@@ -25,26 +25,25 @@ except socket.error , msg:
     sys.exit()
      
 print 'Socket bind complete'
+
 #now keep talking with the client
 while 1:
     # receive data from client (data, addr)
-    print 'Informe o tipo de cliente'
+    print('Entre com o indentificador: Emissor ou exibidor ?')
     d = s.recvfrom(1024)
-    if type(d) is not int:
-    	s.sendto('Informe o tipo do cliente' , addr)
-    else:
-    	if d == 0:
-    		print 'Emissor conectado'
+    for d[0] in range(1,999):
+    	print('Emissor tentando conectar')
 
-    	e = s.recvfrom(1024)
-		data = e[0]
-		addr = e[1]
-	     
-	    if not data: 
-	        break
-	     
-	    reply = 'OK...' + data
-	     
-	    s.sendto(reply , addr)
-	    print 'Message[' + addr[0] + ':' + str(addr[1]) + '] - ' + data.strip() 
+    d = s.recvfrom(1024)
+    data = d[0]
+    addr = d[1]
+     
+    if not data: 
+        break
+     
+    reply = 'OK...' + data
+     
+    s.sendto(reply , addr)
+    print 'Message[' + addr[0] + ':' + str(addr[1]) + '] - ' + data.strip()
+     
 s.close()
