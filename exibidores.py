@@ -8,7 +8,7 @@ except socket.error:
     print 'Failed to create socket'
     sys.exit()
  
-host = '10.0.0.1';
+host = '10.0.0.3';
 try:
 	PORT = int(sys.argv[1]) # Arbitrary non-privileged port
 except:
@@ -20,6 +20,7 @@ while(1) :
      
     try :
         #Set the whole string
+        s.sendto(2, (host, port))
         s.sendto(msg, (host, port))
          
         # receive data from server (data, addr)
