@@ -1,0 +1,3 @@
+sudo mn --link tc --custom  ~/mininet/custom/topo-2sw-2host.py --topo mytopo --test iperf
+sudo mn -x --link tc --custom  ~/mininet/custom/topo-2sw-2host.py --topo mytopo
+sudo vi ~/mininet/custom/topo-2sw-2host.py
