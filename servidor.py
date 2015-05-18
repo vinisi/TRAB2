@@ -26,19 +26,21 @@ except socket.error , msg:
      
 print 'Socket bind complete'
 
-#now keep talking with the client
 while 1:
-    # receive data from client (data, addr)
+	# receive data from client (data, addr)
     print('Entre com o indentificador: Emissor ou exibidor')
     d = s.recvfrom(1024)
     ident = int (d[0])
     print ident
     if ident in range(1,999):
     	s.sendto('Exibidor conectado',d[1])
+    	break
     if ident >= 999:
     	print('Emissor conectado')
     	s.sendto('Emissor conectado',d[1])
-
+    	break
+#now keep talking with the client
+while 1:
     d = s.recvfrom(1024)
     data = d[0]
     addr = d[1]
