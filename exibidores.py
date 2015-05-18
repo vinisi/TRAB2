@@ -16,6 +16,7 @@ except:
 	sys.exit()
  
 s.sendto('2', (host, port))
+d = s.recvfrom(1024)
 
 while(1) :
     msg = raw_input('Enter message to send : ')
