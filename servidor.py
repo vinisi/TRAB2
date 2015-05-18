@@ -29,10 +29,10 @@ print 'Socket bind complete'
 #now keep talking with the client
 while 1:
     # receive data from client (data, addr)
-    print('Entre com o indentificador: Emissor ou exibidor ?')
+    print('Entre com o indentificador: Emissor ou exibidor')
     d = s.recvfrom(1024)
-    for d[0] in range(1,999):
-    	print('Emissor tentando conectar')
+    if d[0] in range(1,999):
+    	print('Emissor conectado')
 
     d = s.recvfrom(1024)
     data = d[0]
