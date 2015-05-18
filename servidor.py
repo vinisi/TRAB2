@@ -34,10 +34,10 @@ while 1:
     ident = int (d[0])
     print ident
     if ident in range(1,999):
-    	s.sendto('Exibidor conectado', ident)
+    	s.sendto('Exibidor conectado',d[1])
     if ident >= 999:
     	print('Emissor conectado')
-    	s.sendto('Emissor conectado', ident)
+    	s.sendto('Emissor conectado',d[1])
 
     d = s.recvfrom(1024)
     data = d[0]
