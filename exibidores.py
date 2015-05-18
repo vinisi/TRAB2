@@ -10,12 +10,12 @@ except socket.error:
  
 host = '10.0.0.3';
 try:
-	PORT = int(sys.argv[1]) # Arbitrary non-privileged port
+	port = int(sys.argv[1]) # Arbitrary non-privileged port
 except:
 	print 'Informe a porta [cliente].py [porta]'
 	sys.exit()
  
-    s.sendto(2)
+s.sendto('2', (host, port))
 while(1) :
     msg = raw_input('Enter message to send : ')
      
