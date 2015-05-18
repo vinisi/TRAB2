@@ -31,9 +31,10 @@ while 1:
     # receive data from client (data, addr)
     print('Entre com o indentificador: Emissor ou exibidor')
     d = s.recvfrom(1024)
-    if d[0] in range(1,999):
+    ident = int (d[0])
+    if ident in range(1,999):
     	s.sendto('Exibidor conectado',d[1])
-    if d[0] >= 999:
+    if ident >= 999:
     	print('Emissor conectado')
     	s.sendto('Emissor conectado',d[1])
 
