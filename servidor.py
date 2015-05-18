@@ -32,9 +32,10 @@ while 1:
     print('Entre com o indentificador: Emissor ou exibidor')
     d = s.recvfrom(1024)
     if d[0] in range(1,999):
-    	print('Exibidor conectado')
+    	s.sendto('Exibidor conectado')
     if d[0] >= 999:
     	print('Emissor conectado')
+    	s.sendto('Emissor conectado')
 
     d = s.recvfrom(1024)
     data = d[0]
